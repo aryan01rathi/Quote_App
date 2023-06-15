@@ -1,15 +1,9 @@
 package com.example.quoteapp
 
-import android.graphics.BlendModeColorFilter
-import android.graphics.Paint.Style
 import android.os.Bundle
-import android.util.Log
-import android.webkit.WebSettings.TextSize
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -19,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.quoteapp.screens.QuoteDetail
 import com.example.quoteapp.screens.quotelistsceen
@@ -28,7 +21,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.text.Typography.quote
 
 class MainActivity : ComponentActivity() {
     private var isDarkTheme by mutableStateOf(false)
@@ -37,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
        //' Datamanager is using IO thread
         CoroutineScope(Dispatchers.IO).launch{
-            delay(1000)
+           // delay(1000)
             DataManager.loadassetfromFile(applicationContext)
         }
 
@@ -60,11 +52,11 @@ fun App(isDarkTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
 
     if(DataManager.isdataloaded.value){
         if(DataManager.currentPage.value==Pages.LIST)
-        quotelistsceen(data = DataManager.data) {
+        quotelistsceen(data = DataManager.data){
             DataManager.switchPages(it)
         }
         else{
-            DataManager.currentQuote?.let { QuoteDetail(quot = it) }
+            DataManager.currentQuote?.let { QuoteDetail(quot = it,isDarkTheme) }
 
         }
     }

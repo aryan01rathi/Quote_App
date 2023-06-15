@@ -4,6 +4,7 @@ import android.provider.ContactsContract.Data
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -23,7 +24,7 @@ import com.example.quoteapp.R
 
 
 @Composable
-fun QuoteDetail(quot:quote){
+fun QuoteDetail(quot:quote,isDarkTheme:Boolean){
 
     BackHandler{
         DataManager.switchPages(null)
@@ -53,13 +54,25 @@ fun QuoteDetail(quot:quote){
                     .padding(10.dp)
                     .align(Alignment.Center)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.baseline_format_quote_24),
-                    contentDescription ="",
-                    modifier= Modifier
-                        .size(80.dp)
-                        .rotate(180f)
-                )
+                if(isDarkTheme) {
+                    Image(
+
+                        painter = painterResource(id = R.drawable.baseline_format_quote_white_24),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(80.dp)
+                            .rotate(180f)
+                    )
+                }
+                else {
+                    Image(
+                        painter = painterResource(id = R.drawable.baseline_format_quote_24),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(80.dp)
+                            .rotate(180f)
+                    )
+                }
                 Text(
                     text =quot.text,
                     style= MaterialTheme.typography.h5,
