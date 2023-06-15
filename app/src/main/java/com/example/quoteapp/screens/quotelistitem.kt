@@ -24,11 +24,11 @@ import com.example.quoteapp.R
 
 
 @Composable
-fun QuoteListItem(quot:quote, onClick:()->Unit) {
+fun QuoteListItem(quot:quote, onClick:(quot:quote)->Unit) {
     Card(
         elevation = 8.dp,
         modifier= Modifier
-            .clickable { onClick() }
+            .clickable { onClick(quot) }
             .padding(4.dp)
     ){
         Row(
@@ -40,7 +40,7 @@ fun QuoteListItem(quot:quote, onClick:()->Unit) {
                 colorFilter=ColorFilter.tint(Color.White),
                 alignment= Alignment.TopStart,
                 modifier= Modifier
-                    .padding(1.dp, 10.dp)
+                    .padding(2.dp,0.dp,6.dp,0.dp)
                     .size(35.dp)
                     .rotate(180f)
                     .background(Color.Black)
@@ -55,12 +55,14 @@ fun QuoteListItem(quot:quote, onClick:()->Unit) {
                     //fontweight=FontWeight.Medium,
                     modifier = Modifier.padding(0.dp,0.dp,0.dp,5.dp)
                 )
+                Spacer(modifier=Modifier.padding(2.dp))
                 Box(
                     modifier = Modifier
                         .background(Color.LightGray)
                         .fillMaxWidth(.5f)
                         .height(1.dp)
                 )
+                Spacer(modifier=Modifier.padding(2.dp))
                 Text(
                     text = quot.author,
                     style = MaterialTheme.typography.body2,
