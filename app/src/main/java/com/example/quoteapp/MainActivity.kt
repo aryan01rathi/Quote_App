@@ -4,12 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -27,13 +31,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       //' Datamanager is using IO thread
+       // Datamanager is using IO thread
         CoroutineScope(Dispatchers.IO).launch{
            // delay(1000)
             DataManager.loadassetfromFile(applicationContext)
         }
 
         setContent{
+
             QuoteAppTheme(darkTheme = isDarkTheme) {
                 App(isDarkTheme) { isDark -> isDarkTheme = isDark }
             }
@@ -71,39 +76,44 @@ fun App(isDarkTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
             )
         }
     }
+
     Button(
         onClick = { onThemeToggle(!isDarkTheme)
                  },
 
-        shape = CircleShape,
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
 
-
+       // shape = CircleShape,
+        colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+        modifier = Modifier
+            .padding(20.dp, 10.dp, 0.dp, 0.dp)
+            .clip(CircleShape)
+            .height(55.dp)
+            .width(55.dp)
 
     ) {
-     //Text(text = if (isDarkTheme) "Light Theme" else "Dark Theme")
+
 
         if(isDarkTheme) {
             Image(
-                painter = painterResource(id = R.drawable.sundark),
+                painter = painterResource(id = R.drawable.sunlight),
 
                 contentDescription = "",
 
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(600.dp)
 
-                    .rotate(180f)
+
             )
         }
         else{
             Image(
 
-                painter = painterResource(id = R.drawable.sunlight),
+                painter = painterResource(id = R.drawable.moon),
                 contentDescription = "",
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(400.dp)
 
-                    .rotate(180f)
+
             )
         }
     }

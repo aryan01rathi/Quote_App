@@ -37,8 +37,8 @@ fun QuoteDetail(quot:quote,isDarkTheme:Boolean){
             .background(
                 Brush.sweepGradient(
                     colors = listOf(
-                        Color.White,
-                        Color.LightGray
+                        Color.DarkGray,
+                        Color.Black
                     )
                 )
             )
