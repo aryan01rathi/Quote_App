@@ -17,17 +17,16 @@ object DataManager {
     //this can either hold a quote or null value
     var currentQuote: quote? =null
 
-    fun loadassetfromFile(context: Context){
-        //val inputStream=context.assets.open("quote.json")
-        val inputStream=context.assets.open("quote.JSON")
-        val size:Int= inputStream.available()
+    fun loadassetfromFile(context: Context) {
+        val inputStream = context.assets.open("quote.JSON")
+        val size: Int = inputStream.available()
         val buffer = ByteArray(size)
         inputStream.read(buffer)
         inputStream.close()
-        val json=String(buffer, Charsets.UTF_8)
-        val gson= Gson()
-        data=gson.fromJson(json,Array<quote>::class.java)
-        isdataloaded.value=true
+        val json = String(buffer, Charsets.UTF_8)
+        val gson = Gson()
+        data = gson.fromJson(json, Array<quote>::class.java)
+        isdataloaded.value = true
     }
 
     fun switchPages(quot: quote?=null){

@@ -28,9 +28,6 @@ fun quotelistsceen(data: Array<quote>, onClick:(quote)->Unit) {
             style = MaterialTheme.typography.h5,
             color = Color.White
         )
-
-        
-
         quotelist(data = data,onClick)
 
     }

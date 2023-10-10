@@ -27,7 +27,8 @@ import com.example.quoteapp.R
 fun QuoteDetail(quot:quote,isDarkTheme:Boolean){
 
     BackHandler{
-        DataManager.switchPages(null)
+        //DataManager.switchPages(null)
+        DataManager.switchPages()
     }
 
     Box(

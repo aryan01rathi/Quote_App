@@ -1,6 +1,9 @@
 package com.example.quoteapp
 
+//import android.graphics.Color
+import android.media.Image
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -8,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.material.*
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.*
@@ -25,6 +29,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class MainActivity : ComponentActivity() {
     private var isDarkTheme by mutableStateOf(false)
@@ -38,7 +43,6 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent{
-
             QuoteAppTheme(darkTheme = isDarkTheme) {
                 App(isDarkTheme) { isDark -> isDarkTheme = isDark }
             }
@@ -78,8 +82,7 @@ fun App(isDarkTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
     }
 
     Button(
-        onClick = { onThemeToggle(!isDarkTheme)
-                 },
+        onClick = { onThemeToggle(!isDarkTheme) },
 
 
        // shape = CircleShape,
@@ -91,8 +94,6 @@ fun App(isDarkTheme: Boolean, onThemeToggle: (Boolean) -> Unit) {
             .width(55.dp)
 
     ) {
-
-
         if(isDarkTheme) {
             Image(
                 painter = painterResource(id = R.drawable.sunlight),
